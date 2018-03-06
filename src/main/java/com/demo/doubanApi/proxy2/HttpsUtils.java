@@ -14,6 +14,26 @@ public class HttpsUtils {
     private static String proxyHost = "111.231.215.145";
     private static int proxyPort = 8080;
 
+    public static String Cookies = null;
+
+
+    public static String getcookies() throws IOException {
+        if (Cookies!=null)
+            return Cookies;
+        CookieManager manager=new CookieManager();
+        manager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+        CookieHandler.setDefault(manager);
+        URL url=new URL("https://api.douban.com/v2/book/1007137");
+        HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+        conn.getHeaderFields();
+        CookieStore store = manager.getCookieStore();
+        String cookies = store.getCookies().toString();
+        cookies = cookies.replace("[", "");
+        cookies = cookies.replace("]", "");
+        Cookies=cookies;
+        return cookies;
+    }
+
     public static void main(String[] args) {
 
         String url = "https://api.douban.com/v2/book/1006732";
@@ -77,6 +97,7 @@ public class HttpsUtils {
             for (Map.Entry<String, String> entry : setProperty().entrySet()) {
                 connection.setRequestProperty(entry.getKey(), entry.getValue());
             }
+            connection.setRequestProperty("Cookie", getcookies());
             // 建立连接
             connection.connect();
             // 定义 BufferedReader输入流来读取URL的响应
@@ -282,5 +303,6 @@ public class HttpsUtils {
         }
         return ctx;
     }
+
 
 }

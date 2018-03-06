@@ -20,7 +20,7 @@ public class ThreadSave implements Runnable{
             //            String json = HttpKit.get(apiUrl+book.getId());
             String json = null;
             try {
-                json = HttpsUtils.sendGet(Main.apiUrl+book.getId(), "", true, proxyAdd.getHost(), proxyAdd.getPort());
+                json = HttpsUtils.sendGet(Main.apiUrl+book.getId(), "", false, proxyAdd.getHost(), proxyAdd.getPort());
             }catch (Exception e){
                 System.err.println(proxyAdd.getHost()+"    连接错误:");
                 proxyAdd.setFlag(4).setErrorInfo(e.toString()+"\n\n\n\n"+json).update();
@@ -51,6 +51,12 @@ public class ThreadSave implements Runnable{
             //本地json备份
             Main.saveStringTolocal(book.getId(), json);
             System.out.println(book.getId()+"完成");
+            try {
+                Thread.sleep(2000L);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         proxyAdd.setFlag(2).setTime(new Date()).update();
         System.err.println("当前还剩下线程数:"+(--num));

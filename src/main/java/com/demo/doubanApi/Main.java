@@ -185,6 +185,11 @@ public class Main {
     }
 
     public static void formatTags(List<BookJson.Tag> tags, Book book){
+        if (tags.size()==0){
+            book.setTags("");
+            return;
+        }
+
         StringBuffer sb = new StringBuffer();
         for (BookJson.Tag btag:tags){
             Tag tag = Tag.dao.findFirst("select id from tag where name=?", btag.getName());
@@ -194,12 +199,16 @@ public class Main {
                 tag.setTitle(btag.getTitle());
                 tag.save();
             }
-            sb.append(tag.getName()+",");
+            sb.append(btag.getName()+",");
         }
         book.setTags(sb.subSequence(0, sb.length()-1).toString());
     }
 
     public static void formatAuthor(List<String> authors, Book book){
+        if (authors.size()==0){
+            book.setAuthor("");
+            return;
+        }
         StringBuffer sb = new StringBuffer();
         for (String author:authors){
             sb.append(author+",");
@@ -207,6 +216,10 @@ public class Main {
         book.setAuthor(sb.subSequence(0, sb.length()-1).toString());
     }
     public static void formatTranslator(List<String> translators, Book book){
+        if (translators.size()==0){
+            book.setTranslator("");
+            return;
+        }
         StringBuffer sb = new StringBuffer();
         for (String translator:translators){
             sb.append(translator+",");
