@@ -1,0 +1,41 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="recommend:war exploded">
+    <output-path>$PROJECT_DIR$/target/recommend</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="recommend" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.jfinal:jetty-server:8.1.8" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-servlet:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-security:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:8.1.8.v20121106" />
+          <element id="library" level="project" name="Maven: com.jfinal:jfinal:3.3" />
+          <element id="library" level="project" name="Maven: cglib:cglib-nodep:3.2.5" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.44" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.29" />
+          <element id="library" level="project" name="Maven: com.jfinal:cos:2017.5" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.2" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.46" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.9" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.5" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/recommend/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="recommend/web/Web" />
+    </root>
+  </artifact>
+</component>
