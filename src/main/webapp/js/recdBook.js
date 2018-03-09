@@ -22,7 +22,7 @@ function getRecdBooks(curpage_) {
         /*到时候多种书籍的时候，加载书籍的函数要分离*/
         var length = data.tbody.length, i;
         for(i= 0; i< length; i++) {
-            var aim = ".recdBook:eq("+ i+ ") .thumbnail ";
+            var aim = ".recdBook:eq("+ i+ ") ";
             $(aim + "img").attr('src', 'images/'+data.tbody[i].id+'.jpg');
             $(aim + ".caption h3:eq(0)").hide().html("《"+ data.tbody[i].name+ "》").fadeIn().attr('title',data.tbody[i].name);
             if(data.tbody[i].borrower) {
