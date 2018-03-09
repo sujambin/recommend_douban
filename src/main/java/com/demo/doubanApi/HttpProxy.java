@@ -39,8 +39,8 @@ public class HttpProxy {
         CloseableHttpClient httpClient=HttpClients.createDefault(); // 创建httpClient实例
         HttpGet httpGet=new HttpGet(url); // 创建httpget实例
         HttpHost proxy=new HttpHost(host, port);
-        RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).setConnectTimeout(20000).build();
-        System.out.println("代理开启"+host);
+        RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).setConnectTimeout(10000).build();
+//        System.out.println("代理开启"+host);
         httpGet.setConfig(requestConfig);
         httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0");
         CloseableHttpResponse response=httpClient.execute(httpGet); // 执行http get请求
@@ -48,7 +48,7 @@ public class HttpProxy {
         String json = EntityUtils.toString(entity, "utf-8");
         response.close(); // response关闭
         httpClient.close(); // httpClient关闭
-        System.out.println("代理结束");
+//        System.out.println("代理结束");
         return json;
     }
 

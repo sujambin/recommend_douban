@@ -99,13 +99,13 @@ public abstract class BaseBook<M extends BaseBook<M>> extends Model<M> implement
 		return getStr("author_intro");
 	}
 
-	public M setPages(java.lang.Integer pages) {
+	public M setPages(java.lang.String pages) {
 		set("pages", pages);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getPages() {
-		return getInt("pages");
+	public java.lang.String getPages() {
+		return getStr("pages");
 	}
 
 	public M setSummary(java.lang.String summary) {

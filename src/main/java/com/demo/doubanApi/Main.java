@@ -113,6 +113,31 @@ public class Main {
         } else {
             try {
                 file.createNewFile();
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                fileOutputStream.write(json.getBytes());
+                // fileOutputStream.write(sbString.getBytes());
+                fileOutputStream.close();
+                Thread.sleep(1000L);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println(id+"保存到本地失败");
+                if(file.exists()){
+                    file.delete();
+                }
+            }
+        }
+
+
+    }
+
+    public static void saveErrorInfoTolocal(long id , String json){
+        String path = "/Users/jambin/code/data/error/"+id+".txt";
+        File file = new File(path);
+        if (file.exists()) {
+            System.err.println(id+"已存在");
+        } else {
+            try {
+                file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }

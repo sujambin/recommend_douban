@@ -3,12 +3,7 @@ package com.demo.common;
 
 import com.demo.common.model._MappingKit;
 import com.demo.index.IndexController;
-import com.jfinal.config.Constants;
-import com.jfinal.config.Handlers;
-import com.jfinal.config.Interceptors;
-import com.jfinal.config.JFinalConfig;
-import com.jfinal.config.Plugins;
-import com.jfinal.config.Routes;
+import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -67,6 +62,10 @@ public class BaseConfig extends JFinalConfig {
 	 * 配置插件
 	 */
 	public void configPlugin(Plugins me) {
+		//定时任务
+//		Cron4jPlugin cp = new Cron4jPlugin(PropKit.use("cron4j_concfig.txt"), "cron4j");
+//		me.add(cp);
+
 		// 配置 druid 数据库连接池插件
 		DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
 		me.add(druidPlugin);
@@ -76,6 +75,9 @@ public class BaseConfig extends JFinalConfig {
 		// 所有映射在 MappingKit 中自动化搞定
 		_MappingKit.mapping(arp);
 		me.add(arp);
+
+
+
 	}
 	
 	public static DruidPlugin createDruidPlugin() {

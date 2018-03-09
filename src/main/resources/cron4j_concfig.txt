@@ -1,0 +1,17 @@
+cron4j=task1, task2, task3
+
+task1.cron=0/3 * * * *
+task1.class=com.demo.doubanApi.task.AddproxyTask
+task1.daemon=true
+task1.enable=true
+
+task2.cron=*/10 * * * *
+task2.class=com.demo.doubanApi.task.AddThreadTask
+task2.daemon=true
+task2.enable=true
+
+task3.cron=* */3 * * *
+task3.class=com.demo.doubanApi.task.ResetProxyTask
+task3.daemon=true
+task3.enable=true
+#, task2, task3

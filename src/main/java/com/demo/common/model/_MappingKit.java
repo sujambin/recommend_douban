@@ -21,6 +21,8 @@ public class _MappingKit {
 		arp.addMapping("proxy_add", "host", ProxyAdd.class);
 		arp.addMapping("rating", "id", Rating.class);
 		arp.addMapping("tag", "id", Tag.class);
+		// Composite Primary Key order: id,userName
+		arp.addMapping("user", "id,userName", User.class);
 	}
 }
 

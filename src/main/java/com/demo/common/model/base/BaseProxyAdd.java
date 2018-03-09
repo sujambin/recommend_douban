@@ -63,4 +63,13 @@ public abstract class BaseProxyAdd<M extends BaseProxyAdd<M>> extends Model<M> i
 		return getStr("error_info");
 	}
 
+	public M setErrTotal(java.lang.Integer errTotal) {
+		set("err_total", errTotal);
+		return (M)this;
+	}
+	
+	public java.lang.Integer getErrTotal() {
+		return getInt("err_total");
+	}
+
 }

@@ -18,13 +18,13 @@ public abstract class BaseRating<M extends BaseRating<M>> extends Model<M> imple
 		return getLong("id");
 	}
 
-	public M setUser(java.lang.String user) {
-		set("user", user);
+	public M setUserId(java.lang.Integer userId) {
+		set("userId", userId);
 		return (M)this;
 	}
 	
-	public java.lang.String getUser() {
-		return getStr("user");
+	public java.lang.Integer getUserId() {
+		return getInt("userId");
 	}
 
 	public M setBookId(java.lang.Long bookId) {
@@ -43,6 +43,15 @@ public abstract class BaseRating<M extends BaseRating<M>> extends Model<M> imple
 	
 	public java.lang.Integer getRating() {
 		return getInt("rating");
+	}
+
+	public M setUserName(java.lang.String userName) {
+		set("userName", userName);
+		return (M)this;
+	}
+	
+	public java.lang.String getUserName() {
+		return getStr("userName");
 	}
 
 }

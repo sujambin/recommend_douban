@@ -11,7 +11,7 @@ public class ProxyAdd extends BaseProxyAdd<ProxyAdd> {
 
     public ProxyAdd getOneProxy() {
         synchronized (this){
-            ProxyAdd proxyAdd =  dao.findFirst("select * from proxy_add where flag = 0 limit 1");
+            ProxyAdd proxyAdd =  dao.findFirst("select * from proxy_add where flag = 0 order by err_total limit 1");
             proxyAdd.setFlag(1).update();
             return proxyAdd;
         }
