@@ -16,8 +16,10 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
+		arp.addMapping("als_rating", "id", AlsRating.class);
 		arp.addMapping("book", "id", Book.class);
 		arp.addMapping("book_json", "id", BookJson.class);
+		arp.addMapping("pred", "id", Pred.class);
 		arp.addMapping("proxy_add", "host", ProxyAdd.class);
 		arp.addMapping("rating", "id", Rating.class);
 		arp.addMapping("tag", "id", Tag.class);

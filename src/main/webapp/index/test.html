@@ -20,275 +20,267 @@
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!--<script type="text/javascript" src="../js/recdBook.js"></script>-->
+    <script type="text/javascript" src="../js/recdBook.js"></script>
 </head>
 <body>
-
-
-
-<div id="db-tags-section" class="blank20">
-
-
-
-
-    <div class="container">
-        <h2>
-            <span class="">豆瓣成员常用的标签(共30个)</span>
-            &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
-
-        </h2>
-        <div class="indent">    <span class="">
-            <a class="  tag" href="/tag/小说">小说</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/爱尔兰">爱尔兰</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/好书，值得一读">好书，值得一读</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/爱玛·多诺霍">爱玛·多诺霍</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/想读，一定很精彩！">想读，一定很精彩！</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/悬疑">悬疑</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/很棒">很棒</a> &nbsp;    </span>
-            <span class="">
-            <a class="  tag" href="/tag/西欧">西欧</a> &nbsp;    </span>
+<div class="row">
+    <div class="panel-heading col-xs-6 col-md-offset-3">
+        <div class="input-group">
+            <input id="userId" type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                            <button class="btn btn-default" id="getRecdBooksByUserId" type="button">请输入用户ID</button>
+                </span>
         </div>
     </div>
 </div>
 
+<!--<div id="db-tags-section" class="blank20">-->
+<!--<div class="container">-->
+<!--<h2>-->
+<!--<span class="">豆瓣成员常用的标签(共30个)</span>-->
+<!--&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·-->
 
-<div class="container">
+<!--</h2>-->
+<!--<div class="indent">    <span class="">-->
+<!--<a class="  tag" href="/tag/小说">小说</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/爱尔兰">爱尔兰</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/好书，值得一读">好书，值得一读</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/爱玛·多诺霍">爱玛·多诺霍</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/想读，一定很精彩！">想读，一定很精彩！</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/悬疑">悬疑</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/很棒">很棒</a> &nbsp;    </span>-->
+<!--<span class="">-->
+<!--<a class="  tag" href="/tag/西欧">西欧</a> &nbsp;    </span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-<div id="rec-ebook-section" class="block5 subject_show">
 
-    <h2>
-        <span class="">id:4552用户看过的书籍</span>
-        &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
 
-    </h2>
-    <div class="content clearfix">
+<div class="container center-block">
 
-        <dl>
-            <dt>
-                <a href="https://read.douban.com/ebook/1531222/?dcs=subject-rec&amp;dcm=douban&amp;dct=1473329" target="_blank">
-            <span class="cover-outer">
-              <img src="https://img3.doubanio.com/view/ark_article_cover/retina/public/1531222.jpg?v=1395394360.0" class="img-responsive">
-            </span>
-                </a>
-            </dt>
-            <dd>
-                <div class="title">
-                    <a href="https://read.douban.com/ebook/1531222/" target="_blank">MacTalk·人生元编程</a>
-                </div>
-                <div class="price">
-                    2.99元
-                </div>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt>
-                <a href="https://read.douban.com/ebook/381109/?dcs=subject-rec&amp;dcm=douban&amp;dct=1473329" target="_blank">
-            <span class="cover-outer">
-              <img src="https://img1.doubanio.com/view/ark_article_cover/retina/public/381109.jpg?v=1395395854.0">
-            </span>
-                </a>
-            </dt>
-            <dd>
-                <div class="title">
-                    <a href="https://read.douban.com/ebook/381109/" target="_blank">我编程我快乐</a>
-                </div>
-                <div class="price">
-                    18.00元
-                </div>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt>
-                <a href="https://read.douban.com/ebook/198648/?dcs=subject-rec&amp;dcm=douban&amp;dct=1473329" target="_blank">
-            <span class="cover-outer">
-              <img src="https://img1.doubanio.com/view/ark_article_cover/retina/public/198648.jpg?v=1395393782.0">
-            </span>
-                </a>
-            </dt>
-            <dd>
-                <div class="title">
-                    <a href="https://read.douban.com/ebook/198648/" target="_blank">CoffeeScript小书</a>
-                </div>
-                <div class="price">
-                    1.99元
-                </div>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt>
-                <a href="https://read.douban.com/ebook/1499455/?dcs=subject-rec&amp;dcm=douban&amp;dct=1473329" target="_blank">
-            <span class="cover-outer">
-              <img src="https://img3.doubanio.com/view/ark_article_cover/retina/public/1499455.jpg?v=1395393904.0">
-            </span>
-                </a>
-            </dt>
-            <dd>
-                <div class="title">
-                    <a href="https://read.douban.com/ebook/1499455/" target="_blank">Python源码剖析</a>
-                </div>
-                <div class="price">
-                    38.39元
-                </div>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt>
-                <a href="https://read.douban.com/ebook/484790/?dcs=subject-rec&amp;dcm=douban&amp;dct=1473329" target="_blank">
-            <span class="cover-outer">
-              <img src="https://img3.doubanio.com/view/ark_article_cover/retina/public/484790.jpg?v=1395395714.0">
-            </span>
-                </a>
-            </dt>
-            <dd>
-                <div class="title">
-                    <a href="https://read.douban.com/ebook/484790/" target="_blank">精益创业</a>
-                </div>
-                <div class="price">
-                    12.00元
-                </div>
-            </dd>
-        </dl>
+    <div id="userBook" class="block5 subject_show knnlike">
+        <h2>
+            <span class="">该用户已经看过的书籍</span>
+            &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+        </h2>
+        <div class="content clearfix userReadedBook">
+            <dl class="readedBook">
+                <dt>
+                    <!--使用js加载数据href="https://book.douban.com/subject/30143057/"-->
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" src="../img/default.jpg">
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="readedBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img"  src="../img/default.jpg">
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="readedBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img"  src="../img/default.jpg">
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="readedBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" src="../img/default.jpg">
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="readedBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <!--<dl class="clear"></dl>-->
+        </div>
     </div>
-</div>
-
-</div>
-
-
-<div class="container">
-
     <div id="db-rec-section" class="block5 subject_show knnlike">
+        <h2>
+            <span class="">为该用户推荐的书籍</span>
+            &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+        </h2>
+        <div class="content clearfix">
+            <dl class="recdBook">
+                <dt>
+                    <!--使用js加载数据href="https://book.douban.com/subject/30143057/"-->
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="clear"></dl>
 
-    <h2>
-        <span class="">为该用户推荐的书籍</span>
-        &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
-
-    </h2>
-
-
-    <div class="content clearfix">
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/30143057/" onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29688559.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/30143057/" onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
-                    和你在一起才是全世界3
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27616246/" onclick="moreurl(this, {'total': 10, 'clicked': '27616246', 'pos': 1, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29652217.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27616246/" onclick="moreurl(this, {'total': 10, 'clicked': '27616246', 'pos': 1, 'identifier': 'book-rec-books'})" class="">
-                    你的声音，我的世界
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27593500/" onclick="moreurl(this, {'total': 10, 'clicked': '27593500', 'pos': 2, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29623189.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27593500/" onclick="moreurl(this, {'total': 10, 'clicked': '27593500', 'pos': 2, 'identifier': 'book-rec-books'})" class="">
-                    是谁杀了我
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27187609/" onclick="moreurl(this, {'total': 10, 'clicked': '27187609', 'pos': 3, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img3.doubanio.com/lpic/s29596974.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27187609/" onclick="moreurl(this, {'total': 10, 'clicked': '27187609', 'pos': 3, 'identifier': 'book-rec-books'})" class="">
-                    他站在时光深处
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27163206/" onclick="moreurl(this, {'total': 10, 'clicked': '27163206', 'pos': 4, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29593357.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27163206/" onclick="moreurl(this, {'total': 10, 'clicked': '27163206', 'pos': 4, 'identifier': 'book-rec-books'})" class="">
-                    当命运来敲门
-                </a>
-            </dd>
-        </dl>
-        <dl class="clear"></dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27106848/" onclick="moreurl(this, {'total': 10, 'clicked': '27106848', 'pos': 5, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img3.doubanio.com/lpic/s29568901.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27106848/" onclick="moreurl(this, {'total': 10, 'clicked': '27106848', 'pos': 5, 'identifier': 'book-rec-books'})" class="">
-                    春江花月夜之有狐
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27154034/" onclick="moreurl(this, {'total': 10, 'clicked': '27154034', 'pos': 6, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29559158.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27154034/" onclick="moreurl(this, {'total': 10, 'clicked': '27154034', 'pos': 6, 'identifier': 'book-rec-books'})" class="">
-                    谢谢你来过
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27191859/" onclick="moreurl(this, {'total': 10, 'clicked': '27191859', 'pos': 7, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img3.doubanio.com/lpic/s29601723.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27191859/" onclick="moreurl(this, {'total': 10, 'clicked': '27191859', 'pos': 7, 'identifier': 'book-rec-books'})" class="">
-                    许我向你看：插图纪念版
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27187496/" onclick="moreurl(this, {'total': 10, 'clicked': '27187496', 'pos': 8, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img1.doubanio.com/lpic/s29596899.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27187496/" onclick="moreurl(this, {'total': 10, 'clicked': '27187496', 'pos': 8, 'identifier': 'book-rec-books'})" class="">
-                    你的世界总有一个我
-                </a>
-            </dd>
-        </dl>
-
-        <dl class="">
-            <dt>
-                <a href="https://book.douban.com/subject/27593653/" onclick="moreurl(this, {'total': 10, 'clicked': '27593653', 'pos': 9, 'identifier': 'book-rec-books'})"><img class="m_sub_img" src="https://img3.doubanio.com/lpic/s29623515.jpg"></a>
-            </dt>
-            <dd>
-                <a href="https://book.douban.com/subject/27593653/" onclick="moreurl(this, {'total': 10, 'clicked': '27593653', 'pos': 9, 'identifier': 'book-rec-books'})" class="">
-                    梦见狮子
-                </a>
-            </dd>
-        </dl>
-        <dl class="clear"></dl>
-    </div>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="recdBook">
+                <dt>
+                    <a  onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})">
+                        <img class="m_sub_img" >
+                    </a>
+                </dt>
+                <dd>
+                    <a onclick="moreurl(this, {'total': 10, 'clicked': '30143057', 'pos': 0, 'identifier': 'book-rec-books'})" class="">
+                        书名
+                    </a>
+                    <button type="button" class="btn-xs btn-info">5分</button>
+                </dd>
+            </dl>
+            <dl class="clear"></dl>
+        </div>
     </div>
 </div>
 </body>

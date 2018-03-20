@@ -1,5 +1,10 @@
 package com.demo.spark;
 
+import com.demo.common.model.AlsRating;
+import com.demo.common.model._MappingKit;
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.ml.evaluation.RegressionEvaluator;
 import org.apache.spark.ml.recommendation.ALS;
@@ -53,7 +58,7 @@ public class DoubanBookALS {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         // 测试数据文件路径
         // 使用本地所有可用线程local[*]
         SparkSession spark = SparkSession.builder().master("local[*]").appName("JavaALSExample").getOrCreate();
@@ -70,7 +75,7 @@ public class DoubanBookALS {
 
         // 对训练数据集使用ALS算法构建建议模型
         ALS als = new ALS().setMaxIter(5).setRegParam(0.01).setUserCol("userId").setItemCol("bookId")
-                .setRatingCol("rating").setRank(10).setMaxIter(10).setRegParam(0.1);
+                .setRatingCol("rating");
         ALSModel model = als.fit(training);
 
         // Evaluate the model by computing the RMSE on the test data
@@ -79,27 +84,61 @@ public class DoubanBookALS {
         model.setColdStartStrategy("drop");
         Dataset<Row> predictions = model.transform(test);
 
-        // 打印predictions的schema
-        predictions.printSchema();
-
-        // predictions的schema输出
-        // root
-        // |-- movieId: integer (nullable = false)
-        // |-- rating: float (nullable = false)
-        // |-- timestamp: long (nullable = false)
-        // |-- userId: integer (nullable = false)
-        // |-- prediction: float (nullable = true)
-
         RegressionEvaluator evaluator = new RegressionEvaluator().setMetricName("rmse").setLabelCol("rating")
                 .setPredictionCol("prediction");
         double rmse = evaluator.evaluate(predictions);
         // 打印均方根误差
         System.out.println("Root-mean-square error = " + rmse);
 
-    // Generate top 10 movie recommendations for each user
+    // Generate top 10 movie recommendations for each user0l
+
         Dataset<Row> userRecs = model.recommendForAllUsers(10);
+
+
+        predictUser(userRecs, 3);
 //        userRecs.show(50000);
+
 
     }
 
+    public static void saveToDb(Dataset<Row> userRecs){
+        try {
+            PropKit.use("a_little_config.txt");
+            DruidPlugin dp = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+            ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+            // 所有映射在 MappingKit 中自动化搞定
+            _MappingKit.mapping(arp);
+            // 与 jfinal web 环境唯一的不同是要手动调用一次相关插件的start()方法
+            dp.start();
+            arp.start();
+            userRecs.javaRDD().foreach(
+                    row->
+                            row.getList(1).forEach(
+                                    arr->{
+                                        String str = arr.toString();
+                                        str = str.substring(1,str.length()-1);
+                                        int userId = row.getInt(0);
+                                        System.out.println(userId+","+str);
+                                        try {
+                                            AlsRating alsRating = new AlsRating();
+                                            alsRating.setUserId(userId);
+                                            alsRating.setBookId(Integer.parseInt(str.split(",")[0]));
+                                            alsRating.setRating(Double.parseDouble(str.split(",")[1]));
+                                            alsRating.save();
+                                        }catch (Exception x){
+
+                                        }
+
+
+                                    })
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+        }
+    }
+
+    public static void predictUser(Dataset<Row> userRecs, int userId) {
+        userRecs.javaRDD().filter(row -> row.getInt(0) == userId).foreach(row -> row.getList(1).forEach(line -> System.out.println(line)));
+    }
 }

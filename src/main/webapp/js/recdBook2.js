@@ -140,11 +140,11 @@ function formatRecommendBooks() {
     formatSparkRecd();
 }
 
-/*加载用户已经看过的书籍*/
+/*spark 推荐书籍*/
 function formatSparkRecd() {
     var userId = $("#userId").val();
-    $.get("/als", {
-        num:"10",
+    $.get("/txt", {
+        num:"50",
         userId: userId,
 
     }, function (data) {

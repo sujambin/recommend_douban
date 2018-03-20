@@ -7,13 +7,12 @@ import org.apache.spark.ml.recommendation.ALSModel;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema;
-import scala.collection.Seq;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.Serializable;
-import java.util.List;
 
-public class JavaALSExample {
+public class JavaALSExample implements Serializable{
 
     public static class Rating implements Serializable {
 
@@ -80,7 +79,7 @@ public class JavaALSExample {
 
         // 对训练数据集使用ALS算法构建建议模型
         ALS als = new ALS().setMaxIter(5).setRegParam(0.01).setUserCol("userId").setItemCol("movieId")
-                .setRatingCol("rating").setRank(20).setMaxIter(10).setRegParam(0.1);
+                .setRatingCol("rating").setRank(20).setRegParam(0.1);
         ALSModel model = als.fit(training);
 
         // Evaluate the model by computing the RMSE on the test data
@@ -89,16 +88,6 @@ public class JavaALSExample {
         model.setColdStartStrategy("drop");
         Dataset<Row> predictions = model.transform(test);
 
-        // 打印predictions的schema
-        predictions.printSchema();
-
-        // predictions的schema输出
-        // root
-        // |-- movieId: integer (nullable = false)
-        // |-- rating: float (nullable = false)
-        // |-- timestamp: long (nullable = false)
-        // |-- userId: integer (nullable = false)
-        // |-- prediction: float (nullable = true)
 
 
         RegressionEvaluator evaluator = new RegressionEvaluator().setMetricName("rmse").setLabelCol("rating")
@@ -107,28 +96,61 @@ public class JavaALSExample {
         // 打印均方根误差
         System.out.println("Root-mean-square error = " + rmse);
 
+
     // Generate top 10 movie recommendations for each user
         Dataset<Row> userRecs = model.recommendForAllUsers(10);
 
-        userRecs.toJavaRDD();
 
-        Row[] rows = (Row[])userRecs.collect();
-        List<GenericRowWithSchema> list = rows[0].getList(1);
-        System.out.println(list.get(0).toString());
-        GenericRowWithSchema object = list.get(0);
-        Seq<Object> seq = object.toSeq();
-        System.out.println(object.toString());
+        String path1 = "/Users/jambin/code/data/alsResult.csv";
+
+        try {
+            BufferedWriter bw= new BufferedWriter(new FileWriter(path1));
+            userRecs.javaRDD().foreach(
+                    row->
+                            row.getList(1).forEach(
+                                    arr->{
+                                        String str = arr.toString();
+                                        str = str.substring(1,str.length()-1);
+                                        int userId = row.getInt(0);
+                                        try {
+                                            bw.write(userId+","+str);
+                                            bw.newLine();
+//                                            Files.write(Paths.get(path1), (userId+","+str).getBytes());
+                                        }catch (Exception x){
+
+                                        }
+
+
+                                    })
+            );
+            bw.flush();
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+        }
+
+//        Row[] rows = (Row[])userRecs.collect();
+//        List<GenericRowWithSchema> list = rows[0].getList(1);
+//        System.out.println(list.get(0).toString());
+//        GenericRowWithSchema object = list.get(0);
+//        Seq<Object> seq = object.toSeq();
+//        System.out.println(object.toString());
 //        System.out.println(object[0]+"ddd"+object[1]);
 
 
 //        for (Row row: rows){
 //            Integer userID = (Integer) row.get(0);
-//            List list = row.getList(1);
+//            if (userID==22){
+//                System.out.println(list);
+//            }
+//            List list2 = row.getList(1);
 //            System.out.println(userID);
 //            System.out.println("size"+list.size());
 //        }
-        userRecs.write();
-        userRecs.printSchema();
+//        userRecs.write();
+//        userRecs.printSchema();
+
 //        userRecs.select("userId").show(10);
 //        userRecs.select("movieId").show(10);
 //        Dataset<Row> res =  userRecs.select("recommendations");
