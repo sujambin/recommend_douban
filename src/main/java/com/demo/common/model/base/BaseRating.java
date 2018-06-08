@@ -19,21 +19,21 @@ public abstract class BaseRating<M extends BaseRating<M>> extends Model<M> imple
 	}
 
 	public M setUserId(java.lang.Integer userId) {
-		set("userId", userId);
+		set("user_id", userId);
 		return (M)this;
 	}
 	
 	public java.lang.Integer getUserId() {
-		return getInt("userId");
+		return getInt("user_id");
 	}
 
 	public M setBookId(java.lang.Long bookId) {
-		set("bookId", bookId);
+		set("book_id", bookId);
 		return (M)this;
 	}
 	
 	public java.lang.Long getBookId() {
-		return getLong("bookId");
+		return getLong("book_id");
 	}
 
 	public M setRating(java.lang.Integer rating) {
@@ -46,12 +46,12 @@ public abstract class BaseRating<M extends BaseRating<M>> extends Model<M> imple
 	}
 
 	public M setUserName(java.lang.String userName) {
-		set("userName", userName);
+		set("user_name", userName);
 		return (M)this;
 	}
 	
 	public java.lang.String getUserName() {
-		return getStr("userName");
+		return getStr("user_name");
 	}
 
 }

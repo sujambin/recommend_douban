@@ -35,20 +35,24 @@ public class HttpProxy {
         System.out.println(json);
     }
 
-    public static String proxyGet(String host, int port, String url) throws Exception{
-        CloseableHttpClient httpClient=HttpClients.createDefault(); // 创建httpClient实例
-        HttpGet httpGet=new HttpGet(url); // 创建httpget实例
-        HttpHost proxy=new HttpHost(host, port);
+    public static String proxyGet(String proxyHost, int proxyPort, String url) throws Exception{
+        // 创建HttpClient实例
+        CloseableHttpClient httpClient=HttpClients.createDefault();
+        // 创建HttpGet实例
+        HttpGet httpGet=new HttpGet(url);
+        //设置IP代理
+        HttpHost proxy=new HttpHost(proxyHost, proxyPort);
         RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).setConnectTimeout(10000).build();
-//        System.out.println("代理开启"+host);
         httpGet.setConfig(requestConfig);
+        //设置请求头，模拟成浏览器访问
         httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0");
-        CloseableHttpResponse response=httpClient.execute(httpGet); // 执行http get请求
-        HttpEntity entity=response.getEntity(); // 获取返回实体
+        // 执行HTTP GET请求
+        CloseableHttpResponse response=httpClient.execute(httpGet);
+        HttpEntity entity=response.getEntity();
+        // 获取API响应结果
         String json = EntityUtils.toString(entity, "utf-8");
-        response.close(); // response关闭
-        httpClient.close(); // httpClient关闭
-//        System.out.println("代理结束");
+        response.close();
+        httpClient.close();
         return json;
     }
 

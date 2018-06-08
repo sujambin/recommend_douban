@@ -36,7 +36,7 @@ public class StartDb {
         int userNum = 0;
         int ratingNum = 0;
         for (User user: list){
-            ratingNum += Db.update("update rating set userId=? where userName=?", user.getId(), user.getUserName());
+            ratingNum += Db.update("update rating set userId=? where userName=?", user.getUserId(), user.getUserName());
             if (++userNum%100==0){
                 System.out.println("处理完"+userNum%100+"条用户数据");
                 System.out.println("处理完"+ratingNum+"条评分数据");

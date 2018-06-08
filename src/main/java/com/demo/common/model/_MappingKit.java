@@ -17,14 +17,20 @@ public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
 		arp.addMapping("als_rating", "id", AlsRating.class);
-		arp.addMapping("book", "id", Book.class);
-		arp.addMapping("book_json", "id", BookJson.class);
+		arp.addMapping("book", "book_id", Book.class);
+		arp.addMapping("book_copy1", "book_id", BookCopy1.class);
+		arp.addMapping("book_statistics", "book_id", BookStatistics.class);
+		// Composite Primary Key order: book_id,id,tag_id
+		arp.addMapping("book_tag", "book_id,id,tag_id", BookTag.class);
+		arp.addMapping("item_similarity", "id", ItemSimilarity.class);
 		arp.addMapping("pred", "id", Pred.class);
+		arp.addMapping("pred_item", "id", PredItem.class);
 		arp.addMapping("proxy_add", "host", ProxyAdd.class);
 		arp.addMapping("rating", "id", Rating.class);
+		arp.addMapping("rating_copy1", "id", RatingCopy1.class);
 		arp.addMapping("tag", "id", Tag.class);
-		// Composite Primary Key order: id,userName
-		arp.addMapping("user", "id,userName", User.class);
+		arp.addMapping("user", "user_id", User.class);
+		arp.addMapping("user_1", "user_id", User1.class);
 	}
 }
 

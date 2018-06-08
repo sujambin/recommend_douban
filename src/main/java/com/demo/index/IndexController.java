@@ -30,7 +30,7 @@ public class IndexController extends Controller {
 
 	public void getReadedBooksByUserId(){
 		String userId = getPara("userId");
-		List readedBook = Db.find("select r.bookId as id, r.rating, b.title, b.image from rating r left join book b on (r.bookId=b.id) where r.userId=?",userId);
+		List readedBook = Db.find("select r.book_id as id, r.rating, b.title, b.image from rating r left join book b on (r.book_id=b.book_id) where r.user_id=?",userId);
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", true);
 		result.put("readedBook", readedBook);
@@ -39,7 +39,7 @@ public class IndexController extends Controller {
 
 	public void getRecdBooksByUserId(){
 		String userId = getPara("userId");
-		List recdBooks = Db.find("select p.bookId as id, p.rating, b.title, b.image from pred p left join book b on (p.bookId=b.id) where p.userId=?",userId);
+		List recdBooks = Db.find("select p.book_id as id, p.rating, b.title, b.image from pred p left join book b on (p.book_id=b.book_id) where p.user_id=?",userId);
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", true);
 		result.put("recdBooks", recdBooks);
@@ -49,15 +49,21 @@ public class IndexController extends Controller {
 
 	public void txt() throws Exception{
 		String splitStr = ":";
+		String splitStr2 = ",";
 		List<Record> records = new ArrayList<>();
         FileReader fileReader = new FileReader("/Users/jambin/IdeaProjects/recommend/src/main/java/com/demo/doubanApi/123");
         BufferedReader bf = new BufferedReader(fileReader);
         String str = null;
         while ((str = bf.readLine())!=null){
-            if (!str.contains(splitStr))
+            if (str.contains(splitStr)){
+                records.add(Db.findFirst("select book_id , b.title, b.image, 5 as rating from book b where book_id=? limit 1", str.split(splitStr)[1].trim()));
+            }else if(str.contains(splitStr2)){
+                str = str.replace("[","").replace("]","").replace("(","").replace(")","");
+                records.add(Db.findFirst("select book_id , b.title, b.image, 5 as rating from book b where book_id=? limit 1", str.split(splitStr)[0].trim()));
+            }
+            else
                 continue;
-            str = str.replace("[","").replace("]","");
-            records.add(Db.findFirst("select id , b.title, b.image, 5 as rating from book b where id=? limit 1", str.split(splitStr)[1].trim()));
+
         }
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", true);

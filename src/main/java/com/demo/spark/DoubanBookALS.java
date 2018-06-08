@@ -59,10 +59,8 @@ public class DoubanBookALS {
     }
 
     public static void main(String[] args) throws Exception{
-        // 测试数据文件路径
         // 使用本地所有可用线程local[*]
         SparkSession spark = SparkSession.builder().master("local[*]").appName("JavaALSExample").getOrCreate();
-//        JavaRDD<Rating> ratingsRDD = spark.read().textFile(path).javaRDD().map(Rating::parseRating);
         // $example on$
         JavaRDD<Rating> ratingsRDD = spark
                 .read().textFile("/Users/jambin/code/data/rating.csv").javaRDD()
@@ -74,29 +72,30 @@ public class DoubanBookALS {
         Dataset<Row> test = splits[1];
 
         // 对训练数据集使用ALS算法构建建议模型
-        ALS als = new ALS().setMaxIter(5).setRegParam(0.01).setUserCol("userId").setItemCol("bookId")
-                .setRatingCol("rating");
+        ALS als = new ALS().setRank(6).setMaxIter(5).setRegParam(0.02).setUserCol("userId").setItemCol("bookId")
+                .setRatingCol("rating").setImplicitPrefs(true).setAlpha(1.0);
+        //.setImplicitPrefs(true).setAlpha(1.0)
         ALSModel model = als.fit(training);
 
-        // Evaluate the model by computing the RMSE on the test data
-        // 通过计算均方根误差RMSE(Root Mean Squared Error)对测试数据集评估模型
+
+
         // 注意下面使用冷启动策略drop，确保不会有NaN评估指标
         model.setColdStartStrategy("drop");
         Dataset<Row> predictions = model.transform(test);
-
+        // 通过计算均方根误差RMSE(Root Mean Squared Error)对测试数据集评估模型
         RegressionEvaluator evaluator = new RegressionEvaluator().setMetricName("rmse").setLabelCol("rating")
                 .setPredictionCol("prediction");
         double rmse = evaluator.evaluate(predictions);
         // 打印均方根误差
         System.out.println("Root-mean-square error = " + rmse);
 
-    // Generate top 10 movie recommendations for each user0l
-
+        model = als.fit(ratings);
         Dataset<Row> userRecs = model.recommendForAllUsers(10);
 
 
-        predictUser(userRecs, 3);
+//        predictUser(userRecs, 3);
 //        userRecs.show(50000);
+        saveToDb(userRecs);
 
 
     }
@@ -118,7 +117,7 @@ public class DoubanBookALS {
                                         String str = arr.toString();
                                         str = str.substring(1,str.length()-1);
                                         int userId = row.getInt(0);
-                                        System.out.println(userId+","+str);
+//                                        System.out.println(userId+","+str);
                                         try {
                                             AlsRating alsRating = new AlsRating();
                                             alsRating.setUserId(userId);

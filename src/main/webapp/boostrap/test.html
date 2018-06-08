@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+
+    </script>
+
+</head>
+<body>
+
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">每日推荐</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                推荐效果
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">为用户推荐书籍</a></li>
+                <li><a href="#">为书籍推荐用户</a></li>
+                <li class="divider"></li>
+                <li><a href="#">整体推荐效果展示</a></li>
+            </ul>
+        </li>
+        <li><a href="#">个人中心</a></li>
+    </ul>
+
+
+    <div class="dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            这是一个按钮
+            <!--这是一个下拉图标-->
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">Java</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">数据通信/网络</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        开始演示模态框
+    </button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        模态框（Modal）标题
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    在这里添加一些文本
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="row  col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://www.runoob.com/wp-content/uploads/2014/06/kittens.jpg"
+                     alt="通用的占位符缩略图">
+                <div class="caption">
+                    <h3>缩略图标签</h3>
+                    <p>一些示例文本。一些示例文本。</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">
+                            按钮
+                        </a>
+                        <a href="#" class="btn btn-default" role="button">
+                            按钮
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://www.runoob.com/wp-content/uploads/2014/06/kittens.jpg"
+                     alt="通用的占位符缩略图">
+                <div class="caption">
+                    <h3>缩略图标签</h3>
+                    <p>一些示例文本。一些示例文本。</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">
+                            按钮
+                        </a>
+                        <a href="#" class="btn btn-default" role="button">
+                            按钮
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://www.runoob.com/wp-content/uploads/2014/06/kittens.jpg"
+                     alt="通用的占位符缩略图">
+                <div class="caption">
+                    <h3>缩略图标签</h3>
+                    <p>一些示例文本。一些示例文本。</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">
+                            按钮
+                        </a>
+                        <a href="#" class="btn btn-default" role="button">
+                            按钮
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://www.runoob.com/wp-content/uploads/2014/06/kittens.jpg"
+                     alt="通用的占位符缩略图">
+                <div class="caption">
+                    <h3>缩略图标签</h3>
+                    <p>一些示例文本。一些示例文本。</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">
+                            按钮
+                        </a>
+                        <a href="#" class="btn btn-default" role="button">
+                            按钮
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

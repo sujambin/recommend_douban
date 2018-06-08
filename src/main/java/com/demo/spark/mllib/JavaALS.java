@@ -38,20 +38,8 @@ public final class JavaALS {
 
   public static MatrixFactorizationModel alsModel;
 
+
   static class ParseRating implements Function<String, Rating> {
-    private static final Pattern COMMA = Pattern.compile("::");
-
-    @Override
-    public Rating call(String line) {
-      String[] tok = COMMA.split(line);
-      int x = Integer.parseInt(tok[0]);
-      int y = Integer.parseInt(tok[1]);
-      double rating = Double.parseDouble(tok[2]);
-      return new Rating(x, y, rating);
-    }
-  }
-
-  static class ParseRating2 implements Function<String, Rating> {
     private static final Pattern COMMA = Pattern.compile(",");
 
     @Override
@@ -72,13 +60,10 @@ public final class JavaALS {
   }
 
   public static void main(String[] args) {
-    args = new String[]{"/Users/jambin/IdeaProjects/recommend/src/main/resources/ratings.dat",
-                          "10", "10", "/Users/jambin/IdeaProjects/recommend/src/main/resources/result.csv"};
 
     if (args.length < 4) {
-      System.err.println(
-        "Usage: JavaALS <ratings_file> <rank> <iterations> <output_dir> [<blocks>]");
-      System.exit(1);
+      args = new String[]{"/Users/jambin/code/data/rating.csv",
+              "10", "10", "/Users/jambin/IdeaProjects/recommend/src/main/resources/result.csv"};
     }
     SparkConf sparkConf = new SparkConf().setAppName("JavaALS").setMaster("local[*]");
     int rank = Integer.parseInt(args[1]);
@@ -91,30 +76,35 @@ public final class JavaALS {
 
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
     JavaRDD<String> lines = sc.textFile(args[0]);
-
     JavaRDD<Rating> ratings = lines.map(new ParseRating());
-
-    MatrixFactorizationModel model = ALS.train(ratings.rdd(), rank, iterations, 0.01, blocks);
+    MatrixFactorizationModel model = ALS.train(ratings.rdd(), rank, iterations, 0.2, blocks);
 
     Rating[] ratings_2= model.recommendProducts(2, 10);
-    System.out.println(ratings_2.length);
-    alsModel = model;
 
 //    model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
 //        outputDir + "/userFeatures");
 //    model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
 //        outputDir + "/productFeatures");
     System.out.println("Final user/product features written to " + outputDir);
-
-//    sc.stop();
+    recommendForAllUsers(model, ratings);
+    sc.stop();
   }
 
-  public static List<String[]> getPred(int userId, int num){
+  public static void recommendForAllUsers(MatrixFactorizationModel model, JavaRDD<Rating> ratings){
+    ratings.map(rating -> rating.user()).distinct().foreach(id-> {
+        model.recommendProducts(id, 10);
+            }
+    );
 
-    if(alsModel==null){
-//      main(null);
-      initAlsModel();
-    }
+    System.out.println(ratings.collect().size());
+    System.out.println(ratings.map(rating -> rating.user()).distinct().collect().size());
+
+//    ratings.map(row ->row.user()).distinct()
+
+  }
+
+
+  public static List<String[]> getPred(int userId, int num){
     Rating[] ratings = alsModel.recommendProducts(userId, num);
     List<String[]> list = new ArrayList<>();
     for (Rating rating :ratings){
@@ -123,49 +113,5 @@ public final class JavaALS {
     return list;
   }
 
-  public static void pred2(){
-//    // 封装rating的参数形式，user为0，product为电影id进行封装
-//    JavaPairRDD<Integer, Integer> recommondList = JavaPairRDD.fromJavaRDD(movieIdList.map(new Function<Tuple2<Integer,String>, Tuple2<Integer,Integer>>() {
-//
-//      @Override
-//      public Tuple2<Integer, Integer> call(Tuple2<Integer, String> v1) throws Exception {
-//        return new Tuple2<Integer, Integer>(0, v1._1);
-//      }
-//    }));
-//
-//    //通过模型预测出user为0的各product(电影id)的评分，并按照评分进行排序，获取前10个电影id
-//    final List<Integer> list = alsModel.predict(recommondList).sortBy(new Function<Rating, Double>() {
-//
-//      @Override
-//      public Double call(Rating v1) throws Exception {
-//        return v1.rating();
-//      }
-//    }, false, 1).map(new Function<Rating, Integer>() {
-//
-//      @Override
-//      public Integer call(Rating v1) throws Exception {
-//        return v1.product();
-//      }
-//    }).take(10);
-  }
 
-  public static void initAlsModel(){
-    System.out.println("准备初始化model");
-    SparkConf sparkConf = new SparkConf().setAppName("JavaALS").setMaster("local[*]");
-    int rank = 8;
-    int iterations = 20;
-    int blocks = -1;
-    String path = "/Users/jambin/code/data/rating.csv";
-
-    JavaSparkContext sc = new JavaSparkContext(sparkConf);
-    JavaRDD<String> lines = sc.textFile(path);
-
-    JavaRDD<Rating> ratings = lines.map(new ParseRating2());
-
-   alsModel = ALS.train(ratings.rdd(), rank, iterations, 0.1);
-
-
-
-
-  }
 }

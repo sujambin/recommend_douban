@@ -9,13 +9,13 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseBook<M extends BaseBook<M>> extends Model<M> implements IBean {
 
-	public M setId(java.lang.Long id) {
-		set("id", id);
+	public M setBookId(java.lang.Long bookId) {
+		set("book_id", bookId);
 		return (M)this;
 	}
 	
-	public java.lang.Long getId() {
-		return getLong("id");
+	public java.lang.Long getBookId() {
+		return getLong("book_id");
 	}
 
 	public M setTitle(java.lang.String title) {
@@ -115,42 +115,6 @@ public abstract class BaseBook<M extends BaseBook<M>> extends Model<M> implement
 	
 	public java.lang.String getSummary() {
 		return getStr("summary");
-	}
-
-	public M setAlt(java.lang.String alt) {
-		set("alt", alt);
-		return (M)this;
-	}
-	
-	public java.lang.String getAlt() {
-		return getStr("alt");
-	}
-
-	public M setAltTitle(java.lang.String altTitle) {
-		set("alt_title", altTitle);
-		return (M)this;
-	}
-	
-	public java.lang.String getAltTitle() {
-		return getStr("alt_title");
-	}
-
-	public M setSeriesId(java.lang.Integer seriesId) {
-		set("series_id", seriesId);
-		return (M)this;
-	}
-	
-	public java.lang.Integer getSeriesId() {
-		return getInt("series_id");
-	}
-
-	public M setSeriesTitle(java.lang.String seriesTitle) {
-		set("series_title", seriesTitle);
-		return (M)this;
-	}
-	
-	public java.lang.String getSeriesTitle() {
-		return getStr("series_title");
 	}
 
 	public M setCatalog(java.lang.String catalog) {

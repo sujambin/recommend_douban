@@ -1,13 +1,15 @@
 import java.io.File
 
 import org.apache.log4j.{Level, Logger}
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.evaluation.RegressionMetrics
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD
-import org.apache.spark.{SparkConf, SparkContext}
 import org.jblas.DoubleMatrix
 
-object DoubanAls {
+import scala.util.Random
+
+object BookAls {
 
   // 定义一个RMSE计算函数
   def computeRmse(model: MatrixFactorizationModel, data: RDD[Rating]) = {
@@ -29,13 +31,6 @@ object DoubanAls {
       Rating(fields(0).toInt, fields(1).toInt, fields(2).toDouble)
     }
 
-    val numRatings = ratings.count()
-    val numUser = ratings.map(x=>x.user).distinct().count()
-    val numMovie = ratings.map(_.product).distinct().count()
-
-    println("Got "+numRatings+" ratings from "+numUser+" users on "+numMovie+" movies.")
-
-    //3.3 Elicitate personal rating
 
     //3.4 Split data into train(60%), validation(20%) and test(20%)
     val numPartitions = 10
@@ -83,11 +78,6 @@ object DoubanAls {
     println("The best model was trained with rank="+bestRanks+", Iter="+bestIters+", Lambda="+bestLambdas+
       " and compute RMSE on test is "+testRmse)
 
-    //3.7 Create a baseline and compare it with best model
-    val meanRating = trainSet.map(_.rating).mean()
-    val bestlineRmse = new RegressionMetrics(testSet.map(x=>(x.rating, meanRating))).rootMeanSquaredError
-    val improvement = (bestlineRmse - testRmse)/bestlineRmse*100
-    println("The best model improves the baseline by "+"%1.2f".format(improvement)+"%.")
 
     println(bestModel.get.userFeatures.first()._2.foreach(d=>println(d)));
 

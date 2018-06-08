@@ -57,7 +57,7 @@ public class Main {
             String json = null;
             try {
 //                json = HttpProxy.sendGet(apiUrl, book.getId().toString());   //HttpKit.get(apiUrl+book.getId());
-                json = HttpProxy.proxyGet(host, port,apiUrl+book.getId());
+                json = HttpProxy.proxyGet(host, port,apiUrl+book.getBookId());
                 if (json.length()==0)
                     throw new Exception("空白文件");
                 try {
@@ -67,10 +67,10 @@ public class Main {
                     System.out.println(json);
                     break;
                 }
-                String path = "/Users/jambin/code/data/bookInfo/"+book.getId()+".txt";
+                String path = "/Users/jambin/code/data/bookInfo/"+book.getBookId()+".txt";
                 File file = new File(path);
                 if (file.exists()) {
-                    System.err.println(book.getId()+"已存在");
+                    System.err.println(book.getBookId()+"已存在");
                 } else {
                     try {
                         file.createNewFile();
@@ -84,10 +84,10 @@ public class Main {
                     // fileOutputStream.write(sbString.getBytes());
                     fileOutputStream.close();
                     book.setFlag(2).update();
-                    System.out.println(book.getId()+"成功");
+                    System.out.println(book.getBookId()+"成功");
                     Thread.sleep(1000L);
                 } catch (Exception e) {
-                    System.err.println(book.getId()+"失败");
+                    System.err.println(book.getBookId()+"失败");
                     if(file.exists()){
                         file.delete();
                     }
@@ -175,7 +175,7 @@ public class Main {
             //            String json = HttpKit.get(apiUrl+book.getId());
             String json = null;
             try {
-                json = HttpsUtils.sendGet(apiUrl+book.getId(), "", true, proxyAdd.getHost(), proxyAdd.getPort());
+                json = HttpsUtils.sendGet(apiUrl+book.getBookId(), "", true, proxyAdd.getHost(), proxyAdd.getPort());
             }catch (Exception e){
                 System.err.println(proxyAdd.getHost()+"    连接错误:");
                 proxyAdd.setFlag(4).setErrorInfo(json+"\n\n\n\n"+e.toString());
@@ -202,8 +202,8 @@ public class Main {
             book.setFlag(1);
             book.update();
             //本地json备份
-            saveStringTolocal(book.getId(), json);
-            System.out.println(book.getId()+"完成");
+            saveStringTolocal(book.getBookId(), json);
+            System.out.println(book.getBookId()+"完成");
         }
         proxyAdd.setFlag(2).setTime(new Date()).update();
         return true;

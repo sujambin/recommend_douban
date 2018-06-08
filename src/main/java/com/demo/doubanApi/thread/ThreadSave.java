@@ -21,12 +21,12 @@ public class ThreadSave implements Runnable{
             Book book = Book.dao.getOneBook();
             if(book==null)
                 return;
-            long id = book.getId();
+            long id = book.getBookId();
             //            String json = HttpKit.get(apiUrl+book.getId());
             String json = null;
             try {
 //                json = HttpsUtils.sendGet(Main.apiUrl+book.getId(), "", true, proxyAdd.getHost(), proxyAdd.getPort());
-                json = HttpProxy.proxyGet(proxyAdd.getHost(), proxyAdd.getPort(), Main.apiUrl+book.getId());
+                json = HttpProxy.proxyGet(proxyAdd.getHost(), proxyAdd.getPort(), Main.apiUrl+book.getBookId());
             }catch (Exception e){
                 System.err.println(proxyAdd.getHost()+"    连接错误:");
                 proxyAdd.setFlag(4).setErrorInfo(e.toString()+"\n\n\n\n"+json).setTotal(proxyAdd.getTotal()+i-1).setErrTotal(proxyAdd.getErrTotal()+1).update();
@@ -54,7 +54,7 @@ public class ThreadSave implements Runnable{
                 System.out.println(json);
                 Main.saveErrorInfoTolocal(id, json);
                 proxyAdd.setFlag(0).setErrorInfo(json+"\n\n\n\n"+e.toString()).setTotal(proxyAdd.getTotal()+i-1).setErrTotal(proxyAdd.getErrTotal()+1).update();
-                book.setFlag(3).setId(id);
+                book.setFlag(3).setBookId(id);
                 book.update();
                 System.err.println("当前还剩下线程数:"+(--num));
                 return;
@@ -69,12 +69,12 @@ public class ThreadSave implements Runnable{
                 book.setSummary(EmojiFilterUtils.filterEmoji(book.getSummary()));
                 book.update();
             }catch (Exception e){
-                System.out.println("图书更新信息失败："+book.getId());
+                System.out.println("图书更新信息失败："+book.getBookId());
                 e.printStackTrace();
             }
 
             //本地json备份
-            Main.saveStringTolocal(book.getId(), json);
+            Main.saveStringTolocal(book.getBookId(), json);
 //            System.out.println(book.getId()+"完成");
             try {
                 Thread.sleep(1000L);
